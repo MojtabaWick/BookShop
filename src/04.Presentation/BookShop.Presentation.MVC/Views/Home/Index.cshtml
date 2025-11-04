@@ -1,0 +1,48 @@
+﻿@using BookShop.Presentation.MVC.Models.ViewModels
+@model ListBookViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var colors = new[] { "pink", "yellow", "blue", "green", "purple" };
+    int i = 0;
+}
+
+<section class="hero">
+    <h1>هر کتابی که می‌خواهی، اینجا هست</h1>
+    <p>با پیدا کردن سریع عنوان کتاب، از دسته‌بندی‌های مختلف، لذت مطالعه‌ی نو را تجربه کنید.</p>
+    <button>مشاهده پرفروش ها</button>
+</section>
+
+
+<section class="categories container">
+    <h2 style="color:black">دسته‌بندی‌ها</h2>
+    <div class="cat-list">
+        @foreach (var cat in Model.Categories)
+        {
+            var color = colors[i % colors.Length];
+            <button class="cat-item @color">
+                <img src="@cat.ImgAddress" alt="@cat.Title" />
+                <br />
+                @cat.Title
+            </button>
+            i++;
+        }
+    </div>
+</section>
+
+<section class="books">
+    <h2>جدیدترین کتاب‌ها</h2>
+    <a class="btn btn-primary" asp-action="CreateBook">اضافه کردن کتاب</a>
+    <div class="book-list">
+        @foreach (var book in Model.Books)
+        {
+            <div class="book-card">
+                <img src="@book.ImageUrl" alt="@book.Title" />
+                <h3>@book.Title</h3>
+                <p>@book.Author</p>
+                <p>@book.PageCount صفحه</p>
+                <p>@book.Price تومان</p>
+            </div>
+        }
+    </div>
+</section>
+</div>

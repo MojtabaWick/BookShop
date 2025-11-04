@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - فروشگاه کتاب</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
+
+    <!-- Font (Vazir) -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm mb-3">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <ul class="navbar-nav flex-grow-1 d-flex justify-content-start gap-3 mb-0">
+                    <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Shop">فروشگاه</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Categories">دسته‌بندی‌ها</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="About">درباره ما</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Contact">تماس با ما</a></li>
+                </ul>
+                <a class="btn btn-primary" asp-controller="Account" asp-action="Login">ورود</a>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted text-center py-3 mt-5">
+        <div class="container">
+            فروشگاه کتاب | منبع آموزش و مطالعه
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
