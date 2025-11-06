@@ -1,0 +1,90 @@
+﻿@using BookShop.Domain.UserAgg.Dtos
+@model List<GetUserSummaryDto>
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "مدیریت کاربران";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center fw-bold">مدیریت کاربران</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>شناسه</th>
+                            <th>نام کامل</th>
+                            <th>موبایل</th>
+                            <th>ایمیل</th>
+                            <th>نقش</th>
+                            <th>وضعیت</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.FirstName @user.LastName</td>
+                                <td>@user.Mobile</td>
+                                <td>@user.Email</td>
+
+                                <td>
+                                    @if (user.IsAdmin)
+                                    {
+                                        <span class="badge bg-success">ادمین</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">کاربر</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    @if (user.IsActive)
+                                    {
+                                        <span class="badge bg-success">فعال</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">غیرفعال</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        @if (user.IsActive)
+                                        {
+                                            <a asp-action="DeActiveUser" asp-route-userId="@user.Id"
+                                               class="btn btn-sm btn-outline-danger">غیرفعال‌سازی</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="ActiveUser" asp-route-userId="@user.Id"
+                                               class="btn btn-sm btn-outline-success">فعالسازی</a>
+                                        }
+
+                                        <a asp-action="Update" asp-route-userId="@user.Id"
+                                           class="btn btn-sm btn-warning text-white">ویرایش</a>
+
+                                        <a asp-action="DeleteUser" asp-route-userId="@user.Id"
+                                           class="btn btn-sm btn-danger"
+                                           onclick="return confirm('آیا از حذف این کاربر مطمئن هستید؟');">
+                                            حذف
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

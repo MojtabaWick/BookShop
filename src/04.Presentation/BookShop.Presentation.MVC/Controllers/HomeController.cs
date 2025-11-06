@@ -1,11 +1,7 @@
 using BookShop.Domain.BookAgg.Contracts;
 using BookShop.Domain.CategoryAgg.Contracts;
-using BookShop.Presentation.MVC.Models;
 using BookShop.Presentation.MVC.Models.ViewModels;
-using BookShop.Services.BookAgg;
-using BookShop.Services.CategoryAgg;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace BookShop.Presentation.MVC.Controllers
 {

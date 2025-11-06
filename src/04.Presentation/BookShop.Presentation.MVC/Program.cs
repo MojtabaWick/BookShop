@@ -1,12 +1,15 @@
 using BookShop.Domain.BookAgg.Contracts;
 using BookShop.Domain.CategoryAgg.Contracts;
 using BookShop.Domain.FileAgg.Contracts;
+using BookShop.Domain.UserAgg.Contracts;
 using BookShop.Infrastructure.EFCore.Persistence;
 using BookShop.Infrastructure.EFCore.Repositories.BookAgg;
 using BookShop.Infrastructure.EFCore.Repositories.CategoryAgg;
+using BookShop.Infrastructure.EFCore.Repositories.UserAgg;
 using BookShop.Services.BookAgg;
 using BookShop.Services.CategoryAgg;
 using BookShop.Services.FileAgg;
+using BookShop.Services.UserAgg;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,8 @@ builder.Services.AddScoped<IBookService , BookService>();
 builder.Services.AddScoped<ICategoryRepository , CategoryRepository>();
 builder.Services.AddScoped<ICategoryService , CategoryService>();
 builder.Services.AddScoped<IFileService , FileService>();
+builder.Services.AddScoped<IUserRepository , UserRepository>();
+builder.Services.AddScoped<IUserService , UserService>();
 
 
 var app = builder.Build();
