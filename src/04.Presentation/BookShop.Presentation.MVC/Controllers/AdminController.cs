@@ -1,4 +1,5 @@
 ﻿using BookShop.Domain.UserAgg.Contracts;
+using BookShop.Domain.UserAgg.Dtos;
 using BookShop.Services.UserAgg;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,24 @@ namespace BookShop.Presentation.MVC.Controllers
             userService.Delete(userId);
             return RedirectToAction("Users");
         }
+        [HttpGet]
+        public IActionResult UpdateUser(int userId)
+        {
+            var result = userService.GetUpdateUserDetails(userId);
 
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateUser(UpdateGetUserDto model)
+        {
+            var result = userService.Update(model.Id, model);
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Users");
+            }
+
+            return View(model);
+        }
     }
 }

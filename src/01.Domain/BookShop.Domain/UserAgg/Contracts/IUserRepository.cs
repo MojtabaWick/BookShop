@@ -10,6 +10,8 @@ namespace BookShop.Domain.UserAgg.Contracts
         public void Delete(int userId);
         public bool IsActive(string PhoneNumber);
         public bool MobileExists(string PhoneNumber);
+        public UpdateGetUserDto GetUpdateUserDetails(int userId);
+        public bool Update(int userId, UpdateGetUserDto model);
         public UserLoginOutputDto? Login(string mobileOrUsername, string password);
         public bool Register(RegisterUserInputDto model);
 

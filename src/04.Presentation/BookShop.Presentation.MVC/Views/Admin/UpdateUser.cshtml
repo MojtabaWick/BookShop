@@ -1,0 +1,87 @@
+﻿@using BookShop.Domain.UserAgg.Dtos
+
+@model UpdateGetUserDto
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "ویرایش کاربر";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center fw-bold">
+            فرم ثبت یا ویرایش اطلاعات کاربر
+        </div>
+
+        <div class="card-body">
+            <form method="post" asp-action="UpdateUser" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row g-3">
+                    <!-- First Name -->
+                    <div class="col-md-4">
+                        <label class="form-label">نام</label>
+                        <input type="text" asp-for="FirstName" class="form-control" placeholder="نام خود را وارد کنید">
+                        <span class="text-danger" asp-validation-for="FirstName"></span>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-md-4">
+                        <label class="form-label">نام خانوادگی</label>
+                        <input type="text" asp-for="LastName" class="form-control" placeholder="نام خانوادگی را وارد کنید">
+                        <span class="text-danger" asp-validation-for="LastName"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-4">
+                        <label class="form-label">ایمیل</label>
+                        <input type="email" asp-for="Email" class="form-control" placeholder="example@domain.com">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="col-md-4">
+                        <label class="form-label">شماره موبایل</label>
+                        <input type="text" asp-for="Mobile" class="form-control" placeholder="09123456789">
+                        <span class="text-danger" asp-validation-for="Mobile"></span>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="col-md-4">
+                        <label class="form-label">نام کاربری</label>
+                        <input type="text" asp-for="Username" class="form-control" placeholder="نام کاربری را وارد کنید">
+                        <span class="text-danger" asp-validation-for="Username"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-md-4">
+                        <label class="form-label">رمز عبور</label>
+                        <input type="password" asp-for="Password" class="form-control" placeholder="********">
+                        <span class="text-danger" asp-validation-for="Password"></span>
+                    </div>
+
+                    <!-- Role Select -->
+                    <div class="col-md-4">
+                        <label class="form-label">نقش کاربر</label>
+                        <select asp-for="IsAdmin" class="form-select">
+                            <option value="">انتخاب نقش...</option>
+                            <option value="True">مدیر</option>
+                            <option value="False">کاربر</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="IsAdmin"></span>
+                    </div>
+
+                </div>
+
+                <hr class="my-4" />
+
+                <!-- Submit Button -->
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success px-5">
+                        ثبت نهایی اطلاعات
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

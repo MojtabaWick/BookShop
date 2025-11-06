@@ -73,7 +73,7 @@ namespace BookShop.Presentation.MVC.Controllers
 
             if (registerResult.IsSuccess)
             {
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Home");
             }
             else
             {

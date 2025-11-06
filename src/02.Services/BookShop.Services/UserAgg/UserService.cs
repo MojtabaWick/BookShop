@@ -1,4 +1,5 @@
 ﻿using BookShop.Domain._common;
+using BookShop.Domain.FileAgg.Contracts;
 using BookShop.Domain.UserAgg.Contracts;
 using BookShop.Domain.UserAgg.Dtos;
 using BookShop.Framework;
@@ -55,6 +56,31 @@ namespace BookShop.Services.UserAgg
             userRepository.Register(model);
 
             return Result<bool>.Success("ثبت نام با موفقیت انجام شد.");
+        }
+        public UpdateGetUserDto GetUpdateUserDetails(int userId)
+        {
+            var user = userRepository.GetUpdateUserDetails(userId);
+            return user;
+        }
+
+        public Result<bool> Update(int userId, UpdateGetUserDto model)
+        {
+
+            if (model.Password is not null)
+            {
+                model.Password = model.Password.ToMd5Hex();
+            }
+
+            var result = userRepository.Update(userId, model);
+
+            if (result)
+            {
+                return Result<bool>.Success("اطلاعات کاربر با موفقیت به‌روزرسانی شد.");
+            }
+            else
+            {
+                return Result<bool>.Failure("به‌روزرسانی اطلاعات کاربر با خطا مواجه شد.");
+            }
         }
     }
 }

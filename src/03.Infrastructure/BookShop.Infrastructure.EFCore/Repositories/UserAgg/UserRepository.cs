@@ -89,5 +89,53 @@ namespace BookShop.Infrastructure.EFCore.Repositories.UserAgg
             dbContext.Users.Add(entity);
             return dbContext.SaveChanges() > 1;
         }
+        public UpdateGetUserDto GetUpdateUserDetails(int userId)
+        {
+            var user = dbContext.Users
+            .Where(x => x.Id == userId)
+            .AsNoTracking()
+            .Select(u => new UpdateGetUserDto
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                Mobile = u.PhoneNumber,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                IsAdmin = u.IsAdmin,
+            }).FirstOrDefault();
+
+            return user;
+        }
+        public bool Update(int userId, UpdateGetUserDto model)
+        {
+            try
+            {
+                var user = dbContext.Users
+                .FirstOrDefault(u => u.Id == userId);
+
+                if (user is not null)
+                {
+                    user.Username = model.Username;
+                    user.PhoneNumber = model.Mobile;
+                    user.IsAdmin = model.IsAdmin;
+                    user.Email = model.Email;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+
+                    user.PasswordHash = (!string.IsNullOrEmpty(model.Password)) ?
+                        model.Password : user.PasswordHash;
+
+                    dbContext.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

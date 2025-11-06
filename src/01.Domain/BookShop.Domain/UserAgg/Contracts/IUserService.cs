@@ -11,5 +11,7 @@ namespace BookShop.Domain.UserAgg.Contracts
         public void Delete(int userId);
         public Result<UserLoginOutputDto> Login(string mobileOrUsername, string password);
         public Result<bool> Register(RegisterUserInputDto model);
+        public Result<bool> Update(int userId, UpdateGetUserDto model);
+        public UpdateGetUserDto GetUpdateUserDetails(int userId);
     }
 }
