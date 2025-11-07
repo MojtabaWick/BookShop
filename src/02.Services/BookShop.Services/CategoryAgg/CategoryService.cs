@@ -1,17 +1,11 @@
 ﻿using BookShop.Domain._common;
-using BookShop.Domain.BookAgg.Enitities;
 using BookShop.Domain.CategoryAgg.Contracts;
 using BookShop.Domain.CategoryAgg.Dtos;
-using BookShop.Domain.CategoryAgg.Entities;
 using BookShop.Domain.FileAgg.Contracts;
-using BookShop.Domain.UserAgg.Contracts;
-using BookShop.Domain.UserAgg.Dtos;
-using BookShop.Infrastructure.EFCore.Repositories.CategoryAgg;
-using BookShop.Infrastructure.EFCore.Repositories.UserAgg;
 
 namespace BookShop.Services.CategoryAgg
 {
-    public class CategoryService(ICategoryRepository _categoryRepository , IFileService _fileService) : ICategoryService
+    public class CategoryService(ICategoryRepository _categoryRepository, IFileService _fileService) : ICategoryService
     {
         public List<CategorySummeryDto> GetCategories()
         {
@@ -34,7 +28,7 @@ namespace BookShop.Services.CategoryAgg
         }
         public Result<bool> Update(int categoryId, UpdateGetCategoryDto model)
         {
-            if(model.Img is not null)
+            if (model.Img is not null)
             {
                 model.ImgAddress = _fileService.Upload(model.Img);
             }

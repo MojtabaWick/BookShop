@@ -1,10 +1,7 @@
 ﻿using BookShop.Domain._common;
-using BookShop.Domain.FileAgg.Contracts;
 using BookShop.Domain.UserAgg.Contracts;
 using BookShop.Domain.UserAgg.Dtos;
 using BookShop.Framework;
-using BookShop.Infrastructure.EFCore.Repositories.UserAgg;
-using BookShop.Services.FileAgg;
 
 namespace BookShop.Services.UserAgg
 {
@@ -27,7 +24,7 @@ namespace BookShop.Services.UserAgg
 
         public Result<UserLoginOutputDto> Login(string mobileOrUsername, string password)
         {
-            var login = userRepository.Login(mobileOrUsername , password.ToMd5Hex());
+            var login = userRepository.Login(mobileOrUsername, password.ToMd5Hex());
 
             if (login is not null)
             {

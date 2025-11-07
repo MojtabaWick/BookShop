@@ -1,12 +1,10 @@
 ﻿using BookShop.Domain.BookAgg.Contracts;
 using BookShop.Domain.BookAgg.Enitities;
 using BookShop.Domain.FileAgg.Contracts;
-using BookShop.Infrastructure.EFCore.Repositories.BookAgg;
-using BookShop.Services.FileAgg;
 
 namespace BookShop.Services.BookAgg
 {
-    public class BookService(IFileService _fileService , IBookRepository bookRepository) : IBookService
+    public class BookService(IFileService _fileService, IBookRepository bookRepository) : IBookService
     {
 
         public List<Book> GetBooks()
