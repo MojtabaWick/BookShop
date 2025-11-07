@@ -73,6 +73,17 @@ namespace BookShop.Presentation.MVC.Controllers
 
             if (registerResult.IsSuccess)
             {
+                if(InMemoryDatabase.OnlineUser != null)
+                {
+                    if(InMemoryDatabase.OnlineUser.IsAdmin)
+                    {
+                        return RedirectToAction("Users", "Admin");
+                    }
+                    else
+                    {
+                        // redirect to user index
+                    }
+                }
                 return RedirectToAction("Index","Home");
             }
             else

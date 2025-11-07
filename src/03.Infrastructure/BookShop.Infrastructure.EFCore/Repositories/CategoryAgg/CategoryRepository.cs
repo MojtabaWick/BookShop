@@ -2,6 +2,7 @@
 using BookShop.Domain.CategoryAgg.Dtos;
 using BookShop.Domain.CategoryAgg.Entities;
 using BookShop.Domain.UserAgg.Dtos;
+using BookShop.Domain.UserAgg.Entities;
 using BookShop.Infrastructure.EFCore.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,7 +54,8 @@ namespace BookShop.Infrastructure.EFCore.Repositories.CategoryAgg
                 if (category is not null)
                 {
                     category.Title = model.Title;
-                    category.ImgAddress = model.ImgAddress;
+
+                    category.ImgAddress = (!string.IsNullOrEmpty(model.ImgAddress)) ? model.ImgAddress : category.ImgAddress;
 
                     _context.SaveChanges();
                     return true;

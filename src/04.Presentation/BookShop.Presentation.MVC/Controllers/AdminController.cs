@@ -17,6 +17,10 @@ namespace BookShop.Presentation.MVC.Controllers
 
             return View(users);
         }
+        public IActionResult RegisterUser()
+        {
+            return RedirectToAction("Register", "Account");
+        }
         public IActionResult Categories()
         {
             return RedirectToAction("Index", "Category");
