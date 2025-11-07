@@ -1,0 +1,51 @@
+﻿@using BookShop.Domain.CategoryAgg.Dtos
+
+@model UpdateGetCategoryDto
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "ویرایش دسته بندی";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center fw-bold">
+            فرم ثبت یا ویرایش اطلاعات کاربر
+        </div>
+
+        <div class="card-body">
+            <form method="post" asp-action="UpdateCategory" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row g-3">
+                    <!-- Title -->
+                    <div class="col-md-4">
+                        <label class="form-label">نام</label>
+                        <input type="text" asp-for="Title" class="form-control" placeholder="نام دسته بندی را وارد کنید">
+                        <span class="text-danger" asp-validation-for="Title"></span>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="col-md-4">
+                        <label class="form-label">تصویر دسته بندی</label>
+                        <input type="file" asp-for="Img" class="form-control" accept="image/*">
+                        <span class="text-danger" asp-validation-for="Img"></span>
+                    </div>
+                </div>
+                <hr class="my-4" />
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="text-danger text-center mb-3">@ViewBag.Error</div>
+                }
+
+                <!-- Submit Button -->
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success px-5">
+                        ثبت نهایی اطلاعات
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

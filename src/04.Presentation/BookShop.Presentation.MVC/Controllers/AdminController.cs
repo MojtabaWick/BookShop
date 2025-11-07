@@ -17,6 +17,10 @@ namespace BookShop.Presentation.MVC.Controllers
 
             return View(users);
         }
+        public IActionResult Categories()
+        {
+            return RedirectToAction("Index", "Category");
+        }
         public IActionResult ActiveUser(int userId)
         {
             userService.Active(userId);

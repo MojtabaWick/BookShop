@@ -1,0 +1,53 @@
+﻿@using BookShop.Domain.CategoryAgg.Dtos
+@model List<CategorySummeryDto>
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "مدیریت دسته بندی ها";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center fw-bold">مدیریت دسته بندی ها</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>شناسه</th>
+                            <th>نام</th>
+                            <th>تعداد کتاب ها</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+                                <td>@category.Id</td>
+                                <td>@category.Title</td>
+                                <td>@category.BooksCount</td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+
+                                        <a asp-action="UpdateCategory" asp-route-userId="@category.Id"
+                                           class="btn btn-sm btn-warning text-white">ویرایش</a>
+
+                                        <a asp-action="DeleteCategory" asp-route-userId="@category.Id"
+                                           class="btn btn-sm btn-danger"
+                                           onclick="return confirm('آیا از حذف این دسته بندی مطمئن هستید؟');">
+                                            حذف
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
